@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
+<html lang="fr" data-theme="dark"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NoHasard.com - Le Hasard n’existe pas</title>
@@ -570,7 +569,7 @@
 </head>
 <body>
 
-  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Changer de thème" title="Changer de thème">🌙</button>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Passer en mode clair" title="Mode clair">☀️</button>
 
   <div class="edit-badge">MODE ÉDITION</div>
 
@@ -593,42 +592,42 @@
   <script id="sites-data" type="application/json">
 [
   {
-    "name": "EcomStrike.com",
-    "url": "https://ecomstrike.com/",
-    "description": "Business en ligne, SEO et méthodes concrètes.",
-    "logo": "",
-    "badge": ""
+    "name": "MultiMilliardaire.com",
+    "url": "https://multimilliardaire.com/",
+    "description": "Le classement des plus grandes fortunes mondiales.",
+    "logo": "https://multimilliardaire.com/favicon.svg",
+    "badge": "Gratuit"
   },
   {
     "name": "Adsifast.com",
     "url": "https://adsifast.com/",
-    "description": "Alertes Vinted rapides directement sur Telegram.",
-    "logo": "",
+    "description": "Sois notifié des annonces Vinted en temps réel.",
+    "logo": "https://p19-common-sign.tiktokcdn-eu.com/tos-no1a-avt-0068c001-no/d2961537871be8e20fb07fac47ac6761~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=9d18124c&x-expires=1789358400&x-signature=J%2B6mYvDghi0V9kkm5RJusfZurp4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a",
+    "badge": "19.99€"
+  },
+  {
+    "name": "ecomStrike.com",
+    "url": "https://ecomstrike.com/",
+    "description": "Se former au business en ligne : SEO, Affiliation etc...",
+    "logo": "https://ecomstrike.com/favicon.png",
     "badge": ""
   },
   {
-    "name": "Kidomine.com",
-    "url": "https://kidomine.com/",
-    "description": "Le jeu de duels pour savoir qui est le plus connu.",
-    "logo": "",
-    "badge": ""
+    "name": "Scan-YTB.com",
+    "url": "https://scan-ytb.com/",
+    "description": "Trouver les liens, outils et sponsors des chaînes Youtube.",
+    "logo": "assets/logos/scan-ytb.svg",
+    "badge": "4.99€"
   },
   {
-    "name": "BusinessFusion.fr",
-    "url": "https://businessfusion.fr/",
-    "description": "Conseils et ressources pour développer un business en ligne.",
-    "logo": "",
-    "badge": ""
-  },
-  {
-    "name": "CardMonster.fr",
-    "url": "https://cardmonster.fr/",
-    "description": "Cartes Pokémon, produits scellés et collection.",
-    "logo": "",
-    "badge": ""
+    "name": "emoji-script.com",
+    "url": "https://emoji-script.com/",
+    "description": "Coder avec des emojis. Copie, colle, exécute.",
+    "logo": "https://emoji-script.com/favicon.svg",
+    "badge": "Gratuit"
   }
 ]
-  </script>
+</script>
 
   <!-- ÉDITEUR TEMPORAIRE -->
   <section class="editor" id="editor">
@@ -649,22 +648,22 @@
         <div class="form-grid">
           <div class="field">
             <label for="site-name">Nom du site</label>
-            <input id="site-name" placeholder="Ex. MonSite.com" required>
+            <input id="site-name" placeholder="Ex. MonSite.com" required="">
           </div>
 
           <div class="field">
             <label for="site-url">URL</label>
-            <input id="site-url" type="url" placeholder="https://monsite.com/" required>
+            <input id="site-url" type="url" placeholder="https://monsite.com/" required="">
           </div>
 
           <div class="field full">
             <label for="site-description">Description courte</label>
-            <textarea id="site-description" placeholder="Une phrase courte sous le lien." required></textarea>
+            <textarea id="site-description" placeholder="Une phrase courte sous le lien." required=""></textarea>
           </div>
 
           <div class="field full">
-            <label for="site-logo">Logo / favicon (optionnel)</label>
-            <input id="site-logo" type="url" placeholder="https://monsite.com/favicon.ico">
+            <label for="site-logo">Logo / favicon (optionnel — GitHub le sauvegarde ensuite en local)</label>
+            <input id="site-logo" type="text" placeholder="https://monsite.com/favicon.ico ou assets/logos/logo.svg">
           </div>
 
           <div class="field full">
@@ -675,11 +674,66 @@
 
         <div class="editor-actions">
           <button class="btn btn-dark" type="submit" id="submit-btn">+ Ajouter le lien</button>
-          <button class="btn btn-light" type="button" id="cancel-edit" hidden>Annuler</button>
+          <button class="btn btn-light" type="button" id="cancel-edit" hidden="">Annuler</button>
         </div>
       </form>
 
-      <div class="editor-list" id="editor-list"></div>
+      <div class="editor-list" id="editor-list"><div class="editor-item">
+            <div>
+              <strong>MultiMilliardaire.com</strong>
+              <small>https://multimilliardaire.com/</small>
+            </div>
+            <div class="mini-actions">
+              <button class="mini" type="button" data-action="up" data-index="0" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="0" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="0" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="0" title="Supprimer">×</button>
+            </div>
+          </div><div class="editor-item">
+            <div>
+              <strong>Adsifast.com</strong>
+              <small>https://adsifast.com/</small>
+            </div>
+            <div class="mini-actions">
+              <button class="mini" type="button" data-action="up" data-index="1" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="1" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="1" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="1" title="Supprimer">×</button>
+            </div>
+          </div><div class="editor-item">
+            <div>
+              <strong>ecomStrike.com</strong>
+              <small>https://ecomstrike.com/</small>
+            </div>
+            <div class="mini-actions">
+              <button class="mini" type="button" data-action="up" data-index="2" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="2" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="2" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="2" title="Supprimer">×</button>
+            </div>
+          </div><div class="editor-item">
+            <div>
+              <strong>Scan-YTB.com</strong>
+              <small>https://scan-ytb.com/</small>
+            </div>
+            <div class="mini-actions">
+              <button class="mini" type="button" data-action="up" data-index="3" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="3" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="3" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="3" title="Supprimer">×</button>
+            </div>
+          </div><div class="editor-item">
+            <div>
+              <strong>emoji-script.com</strong>
+              <small>https://emoji-script.com/</small>
+            </div>
+            <div class="mini-actions">
+              <button class="mini" type="button" data-action="up" data-index="4" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="4" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="4" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="4" title="Supprimer">×</button>
+            </div>
+          </div></div>
 
       <div class="save-zone">
         <p>
@@ -689,7 +743,7 @@
         <button class="btn btn-dark" type="button" id="download-html">
           Télécharger index.html mis à jour
         </button>
-        <div class="status" id="status"></div>
+        <div class="status" id="status">Modification prise en compte. Pense à télécharger le fichier.</div>
       </div>
     </div>
   </section>
@@ -908,7 +962,34 @@
       document.getElementById("download-html").addEventListener("click", () => {
         dataTag.textContent = "\n" + JSON.stringify(sites, null, 2) + "\n";
 
-        const html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        // Crée une copie propre du document avant téléchargement :
+        // pas de mode édition activé, pas de cartes figées, pas d'éléments injectés.
+        const cleanRoot = document.documentElement.cloneNode(true);
+        const cleanBody = cleanRoot.querySelector("body");
+
+        if (cleanBody) {
+          cleanBody.classList.remove("edit-mode");
+          cleanBody.removeAttribute("cz-shortcut-listen");
+        }
+
+        const cleanLinks = cleanRoot.querySelector("#links");
+        if (cleanLinks) cleanLinks.innerHTML = "";
+
+        const cleanEditorList = cleanRoot.querySelector("#editor-list");
+        if (cleanEditorList) cleanEditorList.innerHTML = "";
+
+        const cleanStatus = cleanRoot.querySelector("#status");
+        if (cleanStatus) cleanStatus.textContent = "";
+
+        cleanRoot.querySelectorAll('style[type="text/css"]').forEach(style => {
+          if (style.textContent.includes("[data-sonner-toaster]")) style.remove();
+        });
+
+        cleanRoot.querySelectorAll("*").forEach(el => {
+          if (/^[a-f0-9]{8,}-[a-f0-9-]+$/i.test(el.localName)) el.remove();
+        });
+
+        const html = "<!DOCTYPE html>\n" + cleanRoot.outerHTML;
         const blob = new Blob([html], { type: "text/html;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -926,5 +1007,6 @@
       renderEditor();
     }
   </script>
-</body>
-</html>
+
+
+</body></html>
