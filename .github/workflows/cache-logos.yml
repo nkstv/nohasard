@@ -1,0 +1,43 @@
+name: Sauvegarder les logos en local
+
+on:
+  push:
+    paths:
+      - "index.html"
+      - "scripts/cache_logos.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cache-logos:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Télécharger et localiser les logos
+        run: python scripts/cache_logos.py
+
+      - name: Enregistrer les logos dans GitHub
+        shell: bash
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain assets/logos 2>/dev/null)" ]; then
+            echo "Aucun nouveau logo à enregistrer."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add index.html assets/logos
+          git commit -m "Sauvegarde locale des logos [skip ci]"
+          git push
