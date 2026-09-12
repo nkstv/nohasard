@@ -567,7 +567,7 @@
     }
   </style>
 </head>
-<body>
+<body class="">
 
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Passer en mode clair" title="Mode clair">☀️</button>
 
@@ -592,18 +592,18 @@
   <script id="sites-data" type="application/json">
 [
   {
-    "name": "MultiMilliardaire.com",
-    "url": "https://multimilliardaire.com/",
-    "description": "Le classement des plus grandes fortunes mondiales.",
-    "logo": "assets/logos/multimilliardaire.svg",
-    "badge": "Gratuit"
+    "name": "extension-Fast.com",
+    "url": "https://www.extension-fast.com/fr",
+    "description": "Lance une extension Chrome (backlink Google) pour ton site.",
+    "logo": "https://www.extension-fast.com/assets/img/favicon.svg",
+    "badge": "69,00€"
   },
   {
     "name": "Adsifast.com",
     "url": "https://adsifast.com/",
     "description": "Sois notifié des annonces Vinted en temps réel.",
     "logo": "assets/logos/adsifast.jpg",
-    "badge": "19.99€"
+    "badge": "19,99€"
   },
   {
     "name": "ecomStrike.com",
@@ -617,13 +617,34 @@
     "url": "https://scan-ytb.com/",
     "description": "Trouver les liens, outils et sponsors des chaînes Youtube.",
     "logo": "assets/logos/scan-ytb.svg",
-    "badge": "4.99€"
+    "badge": "4,99€"
+  },
+  {
+    "name": "MultiMilliardaire.com",
+    "url": "https://multimilliardaire.com/",
+    "description": "Le classement des plus grandes fortunes mondiales.",
+    "logo": "assets/logos/multimilliardaire.svg",
+    "badge": "Gratuit"
   },
   {
     "name": "emoji-script.com",
     "url": "https://emoji-script.com/",
     "description": "Coder avec des emojis. Copie, colle, exécute.",
     "logo": "assets/logos/emoji-script.svg",
+    "badge": "Gratuit"
+  },
+  {
+    "name": "Werenoi.com",
+    "url": "https://werenoi.com/",
+    "description": "Joue au jeu de choix de doigt aléatoire sur ton écran.",
+    "logo": "",
+    "badge": "Gratuit"
+  },
+  {
+    "name": "Kidomine.com",
+    "url": "https://kidomine.com/",
+    "description": "Choisis ton mode, enchaîne les duels et grimpe dans les ligues.",
+    "logo": "https://kidomine.com/favicon.svg",
     "badge": "Gratuit"
   }
 ]
@@ -678,62 +699,7 @@
         </div>
       </form>
 
-      <div class="editor-list" id="editor-list"><div class="editor-item">
-            <div>
-              <strong>MultiMilliardaire.com</strong>
-              <small>https://multimilliardaire.com/</small>
-            </div>
-            <div class="mini-actions">
-              <button class="mini" type="button" data-action="up" data-index="0" title="Monter">↑</button>
-              <button class="mini" type="button" data-action="down" data-index="0" title="Descendre">↓</button>
-              <button class="mini" type="button" data-action="edit" data-index="0" title="Modifier">✎</button>
-              <button class="mini" type="button" data-action="delete" data-index="0" title="Supprimer">×</button>
-            </div>
-          </div><div class="editor-item">
-            <div>
-              <strong>Adsifast.com</strong>
-              <small>https://adsifast.com/</small>
-            </div>
-            <div class="mini-actions">
-              <button class="mini" type="button" data-action="up" data-index="1" title="Monter">↑</button>
-              <button class="mini" type="button" data-action="down" data-index="1" title="Descendre">↓</button>
-              <button class="mini" type="button" data-action="edit" data-index="1" title="Modifier">✎</button>
-              <button class="mini" type="button" data-action="delete" data-index="1" title="Supprimer">×</button>
-            </div>
-          </div><div class="editor-item">
-            <div>
-              <strong>ecomStrike.com</strong>
-              <small>https://ecomstrike.com/</small>
-            </div>
-            <div class="mini-actions">
-              <button class="mini" type="button" data-action="up" data-index="2" title="Monter">↑</button>
-              <button class="mini" type="button" data-action="down" data-index="2" title="Descendre">↓</button>
-              <button class="mini" type="button" data-action="edit" data-index="2" title="Modifier">✎</button>
-              <button class="mini" type="button" data-action="delete" data-index="2" title="Supprimer">×</button>
-            </div>
-          </div><div class="editor-item">
-            <div>
-              <strong>Scan-YTB.com</strong>
-              <small>https://scan-ytb.com/</small>
-            </div>
-            <div class="mini-actions">
-              <button class="mini" type="button" data-action="up" data-index="3" title="Monter">↑</button>
-              <button class="mini" type="button" data-action="down" data-index="3" title="Descendre">↓</button>
-              <button class="mini" type="button" data-action="edit" data-index="3" title="Modifier">✎</button>
-              <button class="mini" type="button" data-action="delete" data-index="3" title="Supprimer">×</button>
-            </div>
-          </div><div class="editor-item">
-            <div>
-              <strong>emoji-script.com</strong>
-              <small>https://emoji-script.com/</small>
-            </div>
-            <div class="mini-actions">
-              <button class="mini" type="button" data-action="up" data-index="4" title="Monter">↑</button>
-              <button class="mini" type="button" data-action="down" data-index="4" title="Descendre">↓</button>
-              <button class="mini" type="button" data-action="edit" data-index="4" title="Modifier">✎</button>
-              <button class="mini" type="button" data-action="delete" data-index="4" title="Supprimer">×</button>
-            </div>
-          </div></div>
+      <div class="editor-list" id="editor-list"></div>
 
       <div class="save-zone">
         <p>
@@ -743,7 +709,7 @@
         <button class="btn btn-dark" type="button" id="download-html">
           Télécharger index.html mis à jour
         </button>
-        <div class="status" id="status">Modification prise en compte. Pense à télécharger le fichier.</div>
+        <div class="status" id="status"></div>
       </div>
     </div>
   </section>
