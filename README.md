@@ -1,21 +1,20 @@
-# NoHasard.com — éditeur temporaire
+# NoHasard.com — version TOP / animée
 
-## Voir le site
-Ouvre simplement :
-https://nohasard.com/
+## Édition
+Ajoute `?edit=1` à l'URL :
 
-## Ouvrir le mode édition
-Ajoute `?edit=1` :
 https://nohasard.com/?edit=1
 
-Tu peux :
-- ajouter un lien
-- modifier un lien
-- supprimer un lien
-- changer l'ordre
-- ajouter une URL de logo
-- télécharger le `index.html` mis à jour
+## Ce que tu peux faire
+- ajouter / modifier / supprimer / réorganiser les sites
+- changer les textes du header
+- activer / désactiver :
+  - bordures animées
+  - anneau autour du logo
+  - shine au survol
+  - hover lift
+- télécharger le `index.html` final
 
-Ensuite remplace le `index.html` du dépôt GitHub par celui téléchargé.
-
-IMPORTANT : l'éditeur est uniquement côté navigateur. Un visiteur ne peut pas publier de changement sur ton site sans accès en écriture à ton dépôt GitHub.
+## Important
+Les modifications faites en mode édition restent locales dans ton navigateur
+jusqu'à ce que tu télécharges puis remplaces le `index.html` sur GitHub.
