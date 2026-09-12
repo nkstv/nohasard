@@ -1,861 +1,311 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NoHasard.com — Tous mes sites</title>
-  <meta name="description" content="Tous mes projets regroupés au même endroit sur NoHasard.com." />
-  <meta name="theme-color" content="#f5efe4" />
+  <meta name="description" content="Tous mes projets regroupés au même endroit sur NoHasard.com.">
+  <meta name="theme-color" content="#f8f8f6">
 
-  <meta property="og:title" content="NoHasard.com — Tous mes sites" />
-  <meta property="og:description" content="Tous mes projets regroupés au même endroit." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nohasard.com/" />
+  <meta property="og:title" content="NoHasard.com — Tous mes sites">
+  <meta property="og:description" content="Tous mes projets regroupés au même endroit.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nohasard.com/">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23c38a22'/%3E%3Cstop offset='1' stop-color='%23836bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23111217'/%3E%3Cpath d='M17 47V17h8l14 18V17h8v30h-8L25 29v18z' fill='url(%23g)'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111318'/%3E%3Cpath d='M17 47V17h8l14 18V17h8v30h-8L25 29v18z' fill='white'/%3E%3C/svg%3E">
 
   <style>
     :root {
-      --bg: #f6f1e8;
-      --bg-2: #fbf8f2;
-      --card: rgba(255,255,255,.90);
-      --text: #181818;
-      --muted: #726d67;
-      --line: #ddd2c1;
-      --gold: #ad7a14;
-      --gold-soft: #f1e4c7;
-      --blue: #4f64ff;
-      --blue-soft: #dde2ff;
-      --shadow: 0 20px 60px rgba(39, 28, 10, 0.08);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max-width: 1120px;
-      --container: min(calc(100% - 28px), var(--max-width));
+      --bg: #f8f8f6;
+      --card: #fff;
+      --text: #111318;
+      --muted: #74777e;
+      --border: #e7e7e3;
+      --shadow: 0 10px 35px rgba(17,19,24,.055);
+      --radius: 22px;
+      --max: 680px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #fff 0, transparent 40%), var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at 50% -10%, rgba(255,255,255,.95), rgba(255,255,255,0) 40%),
-        linear-gradient(180deg, #f8f4eb 0%, #f4efe5 100%);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    body.anim-borders .rank-card::before,
-    body.anim-borders .rank-card::after,
-    body.anim-logo .logo-ring,
-    body.anim-shine .rank-card .shine,
-    body.anim-hover .rank-card {
-      will-change: transform, opacity;
-    }
-
+    button, input, textarea { font: inherit; }
     a { color: inherit; text-decoration: none; }
-    button, input, textarea, select { font: inherit; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(12px);
-      background: rgba(248, 243, 233, .75);
-      border-bottom: 1px solid rgba(188, 166, 129, .16);
-    }
-
-    .topbar-inner {
-      width: var(--container);
-      height: 68px;
+    .page {
+      width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      padding: 68px 0 42px;
     }
 
-    .brand-mini {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -.03em;
+    .header {
+      text-align: center;
+      margin-bottom: 44px;
     }
 
-    .brand-mini-logo {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+    .brand-logo {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 20px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #111217, #232634);
+      border-radius: 21px;
+      background: var(--text);
       color: #fff;
-      box-shadow: 0 10px 25px rgba(17,18,23,.18);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mini-logo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,0));
-    }
-
-    .brand-mini-logo span {
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(135deg, #f3d183, #8da2ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -.12em;
-    }
-
-    .topbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: 1px solid #e1d3bc;
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 6px 18px rgba(50, 35, 12, .04);
-      font-weight: 700;
-    }
-
-    .hero {
-      width: var(--container);
-      margin: 0 auto;
-      padding: 38px 0 24px;
-    }
-
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      border-radius: 34px;
-      padding: 34px;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.85), rgba(255,255,255,.3) 45%, rgba(255,255,255,0) 60%),
-        linear-gradient(135deg, rgba(196,138,34,.10), rgba(99,93,255,.08)),
-        rgba(255,255,255,.65);
-      border: 1px solid rgba(200, 176, 136, .35);
-      box-shadow: 0 25px 80px rgba(76, 52, 16, .08);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-box::before {
-      content: "";
-      position: absolute;
-      inset: -80px auto auto -60px;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(236,194,106,.22), rgba(236,194,106,0) 70%);
-      pointer-events: none;
-    }
-
-    .hero-box::after {
-      content: "";
-      position: absolute;
-      inset: auto -60px -80px auto;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(112,124,255,.15), rgba(112,124,255,0) 70%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.3fr .8fr;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.75);
-      border: 1px solid #ead9bb;
-      font-size: 12px;
+      font-size: 35px;
       font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--gold);
+      letter-spacing: -4px;
+      box-shadow: 0 14px 30px rgba(17,19,24,.13);
     }
 
-    .hero h1 {
+    h1 {
       margin: 0;
-      font-size: clamp(40px, 7vw, 76px);
-      line-height: .96;
-      letter-spacing: -.05em;
+      font-size: clamp(34px, 7vw, 50px);
+      line-height: 1;
+      letter-spacing: -2.2px;
     }
 
-    .hero p {
-      margin: 16px 0 0;
+    .intro {
+      margin: 14px 0 0;
       color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
-      line-height: 1.6;
-      max-width: 690px;
+      font-size: 15px;
     }
 
-    .hero-right {
+    .links {
       display: grid;
-      gap: 14px;
-      justify-items: end;
+      gap: 13px;
     }
 
-    .stat-box {
-      min-width: 250px;
-      padding: 18px 20px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.8);
-      border: 1px solid rgba(225, 208, 179, .7);
-      box-shadow: 0 15px 40px rgba(57, 38, 15, .06);
-      text-align: left;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .stat-value {
-      margin-top: 8px;
-      font-size: 26px;
-      font-weight: 850;
-      letter-spacing: -.03em;
-    }
-
-    .list-wrap {
-      width: var(--container);
-      margin: 0 auto;
-      padding: 8px 0 52px;
-    }
-
-    .list-head {
+    .link-card {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-
-    .list-head h2 {
-      margin: 0;
-      font-size: clamp(25px, 4vw, 34px);
-      letter-spacing: -.03em;
-    }
-
-    .list-head p {
-      margin: 7px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .cards {
-      display: grid;
-      gap: 18px;
-    }
-
-    .rank-card {
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 78px 140px minmax(0, 1fr) auto;
-      gap: 20px;
-      align-items: center;
-      min-height: 168px;
-      padding: 22px 26px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86));
-      border: 1px solid rgba(194, 173, 143, .6);
+      gap: 17px;
+      min-height: 102px;
+      padding: 21px 23px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.93);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
-      isolation: isolate;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
-    body.anim-hover .rank-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 28px 65px rgba(53, 35, 10, .12);
-      border-color: rgba(180, 131, 36, .48);
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: #d8d8d4;
+      box-shadow: 0 16px 42px rgba(17,19,24,.08);
     }
 
-    .rank-card[data-rank="1"] {
-      background:
-        linear-gradient(180deg, rgba(255,250,240,.98), rgba(255,255,255,.92));
-    }
-
-    .rank-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 1.6px;
-      border-radius: inherit;
-      background: linear-gradient(115deg, rgba(203,146,35,.65), rgba(255,255,255,.2), rgba(103,115,255,.60));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: .55;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body:not(.anim-borders) .rank-card::before {
-      opacity: .3;
-    }
-
-    body.anim-borders .rank-card::after {
-      content: "";
-      position: absolute;
-      inset: -140%;
-      background: conic-gradient(from 0deg, transparent 0deg, rgba(201,142,31,.18) 80deg, transparent 140deg, rgba(102,113,255,.15) 220deg, transparent 300deg);
-      animation: spinBorder 8s linear infinite;
-      opacity: .35;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .shine {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.55) 46%, transparent 60%);
-      transform: translateX(-140%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    body.anim-shine .rank-card:hover .shine {
-      animation: shineSweep 1s ease;
-    }
-
-    .rank-badge {
-      position: relative;
-      z-index: 2;
-      width: 58px;
-      height: 58px;
-      border-radius: 999px;
+    .rank-number {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
       display: grid;
       place-items: center;
-      font-weight: 900;
-      font-size: 28px;
+      border-radius: 50%;
+      background: #f0f0ed;
+      border: 1px solid #e3e3df;
+      color: #676b72;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .rank-number.rank-1 {
+      background: #111318;
+      border-color: #111318;
       color: #fff;
-      background: linear-gradient(180deg, #d7a84d, #9e7317);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 24px rgba(126, 85, 14, .20);
     }
 
-    .rank-card[data-rank="2"] .rank-badge {
-      background: linear-gradient(180deg, #95a2b5, #6b7789);
-    }
-
-    .rank-card[data-rank="3"] .rank-badge {
-      background: linear-gradient(180deg, #cc9150, #a2601c);
-    }
-
-    .rank-card[data-rank]:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .rank-badge {
-      background: linear-gradient(180deg, #e4dfd6, #cbc2b3);
-      color: #635a50;
-      font-size: 24px;
-    }
-
-    .logo-wrap {
-      position: relative;
-      z-index: 2;
-      width: 132px;
-      height: 132px;
+    .site-logo {
+      flex: 0 0 52px;
+      width: 52px;
+      height: 52px;
       display: grid;
       place-items: center;
-    }
-
-    .logo-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 32px;
-      background:
-        conic-gradient(from 0deg, rgba(201,146,31,.70), rgba(255,255,255,0) 35%, rgba(102,113,255,.72) 62%, rgba(255,255,255,0) 80%, rgba(201,146,31,.70));
-      filter: blur(.2px);
-      opacity: .95;
-      z-index: 0;
-      mask: radial-gradient(circle at center, transparent 52%, #000 54%);
-    }
-
-    body:not(.anim-logo) .logo-ring {
-      opacity: .38;
-      animation: none !important;
-    }
-
-    body.anim-logo .logo-ring {
-      animation: orbit 6s linear infinite;
-    }
-
-    .logo-box {
-      position: relative;
-      z-index: 2;
-      width: 116px;
-      height: 116px;
-      border-radius: 28px;
       overflow: hidden;
-      background: #fff;
-      border: 1px solid #e7dcc8;
-      box-shadow: 0 14px 36px rgba(53,35,10,.08);
-      display: grid;
-      place-items: center;
+      border: 1px solid #ededeb;
+      border-radius: 15px;
+      background: #f3f3f1;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.8px;
     }
 
-    .logo-box img {
+    .site-logo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .logo-fallback {
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: -.06em;
-      background: linear-gradient(135deg, var(--gold), var(--blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .content { flex: 1; min-width: 0; }
 
-    .card-content {
-      position: relative;
-      z-index: 2;
-      min-width: 0;
-    }
-
-    .title-row {
+    .site-name {
       display: flex;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 4px;
+      gap: 7px;
+      margin: 0 0 6px;
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 750;
+      letter-spacing: -.6px;
     }
 
-    .site-title {
+    .arrow {
+      color: #8c8f95;
+      font-size: 17px;
+      transition: transform .18s ease, color .18s ease;
+    }
+
+    .link-card:hover .arrow {
+      transform: translate(2px,-2px);
+      color: var(--text);
+    }
+
+    .description {
       margin: 0;
-      font-size: clamp(26px, 3vw, 34px);
-      line-height: 1.05;
-      font-weight: 900;
-      letter-spacing: -.04em;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(191, 151, 78, .45);
-      background: rgba(245, 235, 216, .72);
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: -.02em;
-      white-space: nowrap;
-    }
-
-    .site-desc {
-      margin: 6px 0 14px;
-      font-size: clamp(16px, 2vw, 18px);
       color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .meta-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: #f1ece3;
-      border: 1px solid #e3d5be;
-      color: #645c53;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: -.02em;
-    }
-
-    .tag.blue {
-      color: var(--blue);
-      background: #f3f5ff;
-      border-color: #b9c2ff;
-    }
-
-    .subline {
-      font-size: clamp(16px, 2vw, 18px);
-      line-height: 1.5;
-      color: #9a6d11;
-      font-weight: 900;
-      letter-spacing: -.03em;
-    }
-
-    .belowline {
-      margin-top: 8px;
-      color: #776d61;
       font-size: 14px;
       line-height: 1.45;
     }
 
-    .action-col {
-      position: relative;
-      z-index: 2;
-      min-width: 210px;
-      text-align: right;
-      display: grid;
-      gap: 16px;
-      justify-items: end;
-    }
-
-    .site-url {
-      font-size: 32px;
-      line-height: 1;
-      font-weight: 950;
-      letter-spacing: -.04em;
-    }
-
-    .site-url a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-
-    .site-url a:hover {
-      opacity: .86;
-      transform: translateY(-1px);
-    }
-
-    .site-arrow {
-      color: var(--blue);
-      font-size: 22px;
-      transform: translateY(-1px);
-    }
-
-    .visit-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 56px;
-      padding: 0 24px;
-      border-radius: 999px;
-      border: 1px solid #dbc9ad;
-      background: rgba(255,255,255,.68);
-      color: #695f54;
-      font-size: 18px;
-      font-weight: 800;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-      transition: transform .18s ease, border-color .18s ease, color .18s ease;
-    }
-
-    .visit-btn:hover {
-      transform: translateY(-2px);
-      border-color: #cba14a;
-      color: var(--text);
-    }
-
-    .visit-btn .value {
-      color: var(--blue);
-      font-weight: 900;
-    }
-
-    .footer {
-      width: var(--container);
-      margin: 0 auto;
-      padding: 0 0 50px;
+    footer {
+      margin-top: 40px;
       text-align: center;
-      color: #9e988e;
-      font-size: 12px;
-      letter-spacing: .12em;
-    }
-
-    /* Editor */
-    .edit-floating-badge {
-      display: none;
-      position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 100;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: #111217;
-      color: #fff;
+      color: #a0a2a7;
       font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .1em;
-      box-shadow: 0 14px 36px rgba(17,18,23,.22);
+      letter-spacing: .11em;
     }
 
-    body.edit-mode .edit-floating-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .editor {
-      display: none;
-    }
+    /* ÉDITEUR — visible uniquement avec ?edit=1 */
+    .editor { display: none; }
 
     body.edit-mode .editor {
       display: block;
-      width: var(--container);
-      margin: 0 auto 44px;
+      width: min(calc(100% - 32px), 760px);
+      margin: 40px auto 70px;
+    }
+
+    body.edit-mode .edit-badge {
+      display: block;
+    }
+
+    .edit-badge {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      top: 14px;
+      right: 14px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: #111318;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      box-shadow: 0 8px 25px rgba(0,0,0,.15);
     }
 
     .editor-box {
-      border-radius: 30px;
-      border: 1px solid rgba(198, 176, 141, .55);
-      background: rgba(255,255,255,.78);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 24px 70px rgba(70, 49, 20, .08);
-      overflow: hidden;
-    }
-
-    .editor-grid {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-    }
-
-    .editor-side {
+      border: 1px solid #deded9;
+      border-radius: 24px;
+      background: #fff;
       padding: 24px;
-      border-right: 1px solid rgba(210, 190, 157, .5);
-      background: linear-gradient(180deg, rgba(250,245,236,.95), rgba(255,255,255,.85));
+      box-shadow: 0 18px 50px rgba(17,19,24,.07);
     }
 
-    .editor-main {
-      padding: 24px;
+    .editor-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
     }
 
-    .editor h3 {
+    .editor h2 {
       margin: 0 0 6px;
-      font-size: 25px;
-      letter-spacing: -.03em;
+      font-size: 23px;
+      letter-spacing: -.7px;
     }
 
     .editor-note {
-      margin: 0 0 18px;
+      margin: 0;
+      max-width: 560px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    .editor-block {
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid #ede2d0;
-    }
-
-    .editor-block:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-
-    .block-title {
-      margin: 0 0 10px;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #7b6d58;
-    }
-
-    .field-row {
+    .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    .field-row.single {
-      grid-template-columns: 1fr;
-    }
-
-    .field {
-      margin-bottom: 12px;
-    }
+    .field.full { grid-column: 1 / -1; }
 
     .field label {
       display: block;
-      margin-bottom: 6px;
-      color: #6f665d;
+      margin: 0 0 6px;
+      color: #62656c;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .field input,
-    .field textarea,
-    .field select {
+    .field textarea {
       width: 100%;
-      padding: 12px 13px;
-      border-radius: 14px;
-      border: 1px solid #e3d7c6;
-      background: #fbf8f2;
-      color: var(--text);
+      border: 1px solid #deded9;
+      border-radius: 13px;
       outline: none;
-      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+      padding: 12px 13px;
+      background: #fafaf8;
+      color: var(--text);
+      transition: border-color .15s, background .15s;
     }
 
     .field textarea {
-      min-height: 78px;
+      min-height: 76px;
       resize: vertical;
     }
 
     .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: #c89a47;
+    .field textarea:focus {
+      border-color: #9b9d9f;
       background: #fff;
-      box-shadow: 0 0 0 4px rgba(200, 154, 71, .10);
     }
 
-    .toggle-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: #faf5ea;
-      border: 1px solid #ecdfca;
-    }
-
-    .toggle strong {
-      display: block;
-      font-size: 14px;
-      letter-spacing: -.02em;
-    }
-
-    .toggle small {
-      display: block;
-      color: var(--muted);
-      margin-top: 3px;
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
-    .switch {
-      position: relative;
-      width: 54px;
-      height: 32px;
-      flex: 0 0 54px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      position: absolute;
-    }
-
-    .slider {
-      position: absolute;
-      inset: 0;
-      border-radius: 999px;
-      background: #d8d2c7;
-      transition: background .18s ease;
-      cursor: pointer;
-    }
-
-    .slider::before {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      left: 4px;
-      top: 4px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 3px 8px rgba(0,0,0,.15);
-      transition: transform .18s ease;
-    }
-
-    .switch input:checked + .slider {
-      background: linear-gradient(135deg, #c99028, #6f82ff);
-    }
-
-    .switch input:checked + .slider::before {
-      transform: translateX(22px);
-    }
-
-    .btns {
+    .editor-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 9px;
       margin-top: 14px;
     }
 
     .btn {
       border: 0;
-      border-radius: 15px;
-      padding: 12px 16px;
+      border-radius: 12px;
+      padding: 11px 14px;
       cursor: pointer;
-      font-weight: 800;
-      font-size: 14px;
-      transition: transform .16s ease, opacity .16s ease;
+      font-size: 13px;
+      font-weight: 750;
     }
 
-    .btn:hover { transform: translateY(-1px); }
-    .btn.dark {
-      color: white;
-      background: linear-gradient(135deg, #111217, #292c36);
-      box-shadow: 0 14px 28px rgba(17,18,23,.18);
-    }
-    .btn.light {
-      color: #554c41;
-      background: #f4ede2;
-      border: 1px solid #e7d6bc;
-    }
-    .btn.red {
-      color: #af2a1f;
-      background: #fff1ef;
-      border: 1px solid #f1d1cc;
-    }
+    .btn-dark { background: #111318; color: #fff; }
+    .btn-light { background: #efefec; color: #22252a; }
+    .btn-danger { background: #fff0f0; color: #b42318; }
 
-    .editor-sites {
+    .editor-list {
       display: grid;
-      gap: 12px;
+      gap: 9px;
+      margin-top: 24px;
     }
 
     .editor-item {
@@ -863,54 +313,49 @@
       grid-template-columns: 1fr auto;
       gap: 12px;
       align-items: center;
-      padding: 14px 15px;
-      border-radius: 18px;
-      border: 1px solid #eadcc5;
-      background: rgba(250, 245, 235, .7);
+      padding: 13px 14px;
+      border: 1px solid #e6e6e2;
+      border-radius: 14px;
+      background: #fafaf8;
     }
 
     .editor-item strong {
       display: block;
-      margin-bottom: 4px;
-      font-size: 15px;
+      font-size: 14px;
+      margin-bottom: 3px;
     }
 
     .editor-item small {
       display: block;
       color: var(--muted);
-      max-width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      max-width: 450px;
     }
 
     .mini-actions {
       display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 5px;
     }
 
-    .mini-btn {
-      width: 36px;
-      height: 36px;
-      border: 1px solid #e3d7c6;
-      border-radius: 12px;
-      background: white;
+    .mini {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #dfdfda;
+      border-radius: 10px;
+      background: #fff;
       cursor: pointer;
-      font-size: 14px;
-      color: #574f45;
+      color: #44484f;
     }
 
-    .download-zone {
+    .save-zone {
       margin-top: 22px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px dashed #dfcdae;
-      background: #fbf8f2;
+      padding-top: 20px;
+      border-top: 1px solid #ecece8;
     }
 
-    .download-zone p {
+    .save-zone p {
       margin: 0 0 12px;
       color: var(--muted);
       font-size: 13px;
@@ -918,461 +363,192 @@
     }
 
     .status {
-      min-height: 18px;
       margin-top: 10px;
+      min-height: 18px;
+      color: #257942;
       font-size: 12px;
-      font-weight: 800;
-      color: #2d8c4d;
+      font-weight: 700;
     }
 
-    @keyframes orbit {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes spinBorder {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes shineSweep {
-      from { transform: translateX(-140%); }
-      to { transform: translateX(160%); }
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .editor-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 560px) {
+      .page {
+        width: min(calc(100% - 24px), var(--max));
+        padding-top: 42px;
       }
 
-      .hero-right {
-        justify-items: stretch;
-      }
+      .header { margin-bottom: 31px; }
 
-      .rank-card {
-        grid-template-columns: 70px 120px minmax(0, 1fr);
-      }
-
-      .action-col {
-        grid-column: 1 / -1;
-        min-width: 0;
-        text-align: left;
-        justify-items: start;
-        margin-left: calc(70px + 120px + 20px);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .topbar-inner {
-        height: auto;
-        padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .hero {
-        padding-top: 24px;
-      }
-
-      .hero-box {
-        padding: 24px 20px;
-      }
-
-      .stat-box {
-        min-width: 0;
-      }
-
-      .rank-card {
-        grid-template-columns: 60px 92px minmax(0, 1fr);
-        gap: 14px;
-        min-height: unset;
-        padding: 18px;
-        border-radius: 24px;
-      }
-
-      .rank-badge {
-        width: 48px;
-        height: 48px;
-        font-size: 22px;
-      }
-
-      .logo-wrap {
-        width: 90px;
-        height: 90px;
-      }
-
-      .logo-box {
-        width: 78px;
-        height: 78px;
-        border-radius: 20px;
-      }
-
-      .logo-fallback {
+      .brand-logo {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
         font-size: 30px;
+        margin-bottom: 17px;
       }
 
-      .site-title {
-        font-size: 24px;
+      .link-card {
+        min-height: 91px;
+        padding: 17px;
+        border-radius: 19px;
       }
 
-      .site-desc {
-        font-size: 15px;
-      }
-
-      .meta-row {
-        gap: 8px;
-      }
-
-      .tag, .pill {
-        min-height: 32px;
-        padding: 6px 12px;
+      .rank-number {
+        flex-basis: 30px;
+        width: 30px;
+        height: 30px;
         font-size: 12px;
       }
 
-      .subline {
+      .site-logo {
+        flex-basis: 46px;
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
         font-size: 15px;
       }
 
-      .belowline {
-        font-size: 13px;
+      .site-name { font-size: 18px; }
+      .description { font-size: 13px; }
+
+      body.edit-mode .editor {
+        width: min(calc(100% - 24px), 760px);
       }
 
-      .action-col {
-        margin-left: 0;
-        grid-column: 1 / -1;
-      }
-
-      .site-url {
-        font-size: 24px;
-      }
-
-      .visit-btn {
-        min-height: 48px;
-        padding: 0 18px;
-        font-size: 15px;
-      }
-
-      .editor-side,
-      .editor-main {
-        padding: 18px;
-      }
-
-      .field-row {
-        grid-template-columns: 1fr;
-      }
+      .editor-box { padding: 18px; border-radius: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
 
       .editor-item {
         grid-template-columns: 1fr;
       }
 
-      .mini-actions {
-        justify-content: flex-start;
+      .mini-actions { justify-content: flex-start; }
+
+      .edit-badge {
+        top: 9px;
+        right: 9px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="edit-floating-badge">MODE ÉDITION</div>
 
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="brand-mini">
-        <div class="brand-mini-logo"><span>N</span></div>
-        <div>NoHasard.com</div>
-      </div>
-      <div class="topbar-actions">
-        <div class="chip">Tous mes sites</div>
-        <div class="chip" id="chip-count">0 projet</div>
-      </div>
-    </div>
-  </div>
+  <div class="edit-badge">MODE ÉDITION</div>
 
-  <section class="hero">
-    <div class="hero-box">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow" id="hero-eyebrow">Hub personnel</div>
-          <h1 id="hero-title">Tous mes sites<br>au même endroit</h1>
-          <p id="hero-subtitle">Une page simple mais plus vivante pour regrouper mes projets, mes outils et mes plateformes.</p>
-        </div>
-        <div class="hero-right">
-          <div class="stat-box">
-            <div class="stat-label">Nom du projet</div>
-            <div class="stat-value">NoHasard.com</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-label">Projets affichés</div>
-            <div class="stat-value" id="stat-count">0</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main class="page">
+    <header class="header">
+      <div class="brand-logo">N</div>
+      <h1>NoHasard.com</h1>
+      <p class="intro">Tous mes projets au même endroit.</p>
+    </header>
 
-  <section class="list-wrap">
-    <div class="list-head">
-      <div>
-        <h2 id="list-title">Mes projets</h2>
-        <p id="list-subtitle">Un classement propre avec plus de style, plus de relief et quelques animations activables.</p>
-      </div>
-    </div>
+    <section class="links" id="links"></section>
 
-    <div class="cards" id="cards"></div>
-  </section>
+    <footer>NOHASARD.COM</footer>
+  </main>
 
-  <div class="footer">NOHASARD.COM</div>
-
-  <script id="page-config" type="application/json">
-{
-  "heroEyebrow": "Hub personnel",
-  "heroTitle": "Tous mes sites au même endroit",
-  "heroSubtitle": "Une page simple mais plus vivante pour regrouper mes projets, mes outils et mes plateformes.",
-  "listTitle": "Mes projets",
-  "listSubtitle": "Un classement propre avec plus de style, plus de relief et quelques animations activables.",
-  "animations": {
-    "animatedBorders": true,
-    "rotatingLogoRing": true,
-    "shineHover": true,
-    "hoverLift": true
-  }
-}
-  </script>
-
+  <!--
+    LES DONNÉES SONT STOCKÉES ICI.
+    L'éditeur les remplace automatiquement quand tu télécharges le nouveau index.html.
+  -->
   <script id="sites-data" type="application/json">
 [
   {
     "name": "EcomStrike.com",
     "url": "https://ecomstrike.com/",
     "description": "Business en ligne, SEO et méthodes concrètes.",
-    "logo": "",
-    "category": "Business",
-    "badge": "Projet",
-    "subline": "Une plateforme pour apprendre à lancer un business en ligne",
-    "cta": "Visiter le site"
+    "logo": ""
   },
   {
     "name": "Adsifast.com",
     "url": "https://adsifast.com/",
     "description": "Alertes Vinted rapides directement sur Telegram.",
-    "logo": "",
-    "category": "SaaS",
-    "badge": "Outil",
-    "subline": "Des alertes automatiques pour ne pas rater les meilleures offres",
-    "cta": "Découvrir"
+    "logo": ""
   },
   {
     "name": "Kidomine.com",
     "url": "https://kidomine.com/",
     "description": "Le jeu de duels pour savoir qui est le plus connu.",
-    "logo": "",
-    "category": "Jeu",
-    "badge": "Fun",
-    "subline": "Défie tes amis avec des face-à-face de notoriété",
-    "cta": "Jouer"
+    "logo": ""
   },
   {
     "name": "BusinessFusion.fr",
     "url": "https://businessfusion.fr/",
     "description": "Conseils et ressources pour développer un business en ligne.",
-    "logo": "",
-    "category": "SEO",
-    "badge": "Blog",
-    "subline": "Des contenus concrets autour du SEO et du business web",
-    "cta": "Lire"
+    "logo": ""
   },
   {
     "name": "CardMonster.fr",
     "url": "https://cardmonster.fr/",
     "description": "Cartes Pokémon, produits scellés et collection.",
-    "logo": "",
-    "category": "Pokémon",
-    "badge": "Shop",
-    "subline": "Une boutique dédiée aux passionnés de cartes Pokémon",
-    "cta": "Voir la boutique"
+    "logo": ""
   }
 ]
   </script>
 
+  <!-- ÉDITEUR TEMPORAIRE -->
   <section class="editor" id="editor">
     <div class="editor-box">
-      <div class="editor-grid">
-        <aside class="editor-side">
-          <h3>Mode édition</h3>
+      <div class="editor-head">
+        <div>
+          <h2>Gérer mes liens</h2>
           <p class="editor-note">
-            Ici tu peux modifier le contenu, ajouter des liens et activer/désactiver les animations
-            pour tester le rendu. Ensuite tu télécharges le nouveau <strong>index.html</strong>.
+            Ajoute, modifie, supprime ou réorganise tes sites. Ensuite télécharge le nouveau
+            <strong>index.html</strong> et remplace celui de ton dépôt GitHub.
           </p>
+        </div>
+      </div>
 
-          <div class="editor-block">
-            <div class="block-title">Textes globaux</div>
+      <form id="site-form">
+        <input type="hidden" id="edit-index" value="-1">
 
-            <div class="field">
-              <label for="cfg-eyebrow">Petit badge du haut</label>
-              <input id="cfg-eyebrow" />
-            </div>
-
-            <div class="field">
-              <label for="cfg-title">Titre principal</label>
-              <input id="cfg-title" />
-            </div>
-
-            <div class="field">
-              <label for="cfg-subtitle">Sous-titre principal</label>
-              <textarea id="cfg-subtitle"></textarea>
-            </div>
-
-            <div class="field">
-              <label for="cfg-list-title">Titre de la liste</label>
-              <input id="cfg-list-title" />
-            </div>
-
-            <div class="field">
-              <label for="cfg-list-subtitle">Sous-titre de la liste</label>
-              <textarea id="cfg-list-subtitle"></textarea>
-            </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="site-name">Nom du site</label>
+            <input id="site-name" placeholder="Ex. MonSite.com" required>
           </div>
 
-          <div class="editor-block">
-            <div class="block-title">Animations / Effets</div>
-
-            <div class="toggle-list">
-              <div class="toggle">
-                <div>
-                  <strong>Bordures animées</strong>
-                  <small>Un contour premium en mouvement autour des cartes.</small>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="toggle-borders">
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="toggle">
-                <div>
-                  <strong>Anneau autour du logo</strong>
-                  <small>Un effet tournant autour du bloc logo.</small>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="toggle-logo">
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="toggle">
-                <div>
-                  <strong>Shine au survol</strong>
-                  <small>Un reflet lumineux passe sur la bannière au hover.</small>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="toggle-shine">
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="toggle">
-                <div>
-                  <strong>Lift au survol</strong>
-                  <small>La carte monte légèrement quand on la survole.</small>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="toggle-hover">
-                  <span class="slider"></span>
-                </label>
-              </div>
-            </div>
+          <div class="field">
+            <label for="site-url">URL</label>
+            <input id="site-url" type="url" placeholder="https://monsite.com/" required>
           </div>
 
-          <div class="download-zone">
-            <p>
-              Une fois que tout est bon, clique ici pour télécharger le fichier puis remplace
-              ton <strong>index.html</strong> sur GitHub.
-            </p>
-            <button class="btn dark" type="button" id="download-html">Télécharger index.html</button>
-            <div class="status" id="status"></div>
-          </div>
-        </aside>
-
-        <div class="editor-main">
-          <div class="editor-block">
-            <div class="block-title">Ajouter / modifier un site</div>
-
-            <form id="site-form">
-              <input type="hidden" id="edit-index" value="-1">
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="site-name">Nom du site</label>
-                  <input id="site-name" placeholder="Ex. Adsifast.com" required>
-                </div>
-                <div class="field">
-                  <label for="site-url">URL</label>
-                  <input id="site-url" type="url" placeholder="https://adsifast.com/" required>
-                </div>
-              </div>
-
-              <div class="field-row single">
-                <div class="field">
-                  <label for="site-description">Description courte</label>
-                  <textarea id="site-description" placeholder="Texte court sous le nom" required></textarea>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="site-category">Catégorie</label>
-                  <input id="site-category" placeholder="SEO, SaaS, Business..." />
-                </div>
-                <div class="field">
-                  <label for="site-badge">Badge</label>
-                  <input id="site-badge" placeholder="Projet, Outil, Fun..." />
-                </div>
-              </div>
-
-              <div class="field-row single">
-                <div class="field">
-                  <label for="site-subline">Phrase mise en avant</label>
-                  <input id="site-subline" placeholder="Une phrase forte comme sur les sites de top." />
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="site-cta">Texte du bouton</label>
-                  <input id="site-cta" placeholder="Visiter, Découvrir, Lire..." />
-                </div>
-                <div class="field">
-                  <label for="site-logo">URL du logo / favicon</label>
-                  <input id="site-logo" type="url" placeholder="https://monsite.com/favicon.ico" />
-                </div>
-              </div>
-
-              <div class="btns">
-                <button class="btn dark" type="submit" id="submit-btn">+ Ajouter le site</button>
-                <button class="btn light" type="button" id="cancel-edit" hidden>Annuler</button>
-              </div>
-            </form>
+          <div class="field full">
+            <label for="site-description">Description courte</label>
+            <textarea id="site-description" placeholder="Une phrase courte sous le lien." required></textarea>
           </div>
 
-          <div class="editor-block">
-            <div class="block-title">Mes sites</div>
-            <div class="editor-sites" id="editor-sites"></div>
+          <div class="field full">
+            <label for="site-logo">Logo / favicon (optionnel)</label>
+            <input id="site-logo" type="url" placeholder="https://monsite.com/favicon.ico">
           </div>
         </div>
+
+        <div class="editor-actions">
+          <button class="btn btn-dark" type="submit" id="submit-btn">+ Ajouter le lien</button>
+          <button class="btn btn-light" type="button" id="cancel-edit" hidden>Annuler</button>
+        </div>
+      </form>
+
+      <div class="editor-list" id="editor-list"></div>
+
+      <div class="save-zone">
+        <p>
+          Les changements ci-dessus sont seulement dans ton navigateur tant que tu n'as pas téléchargé
+          puis commit le nouveau fichier sur GitHub.
+        </p>
+        <button class="btn btn-dark" type="button" id="download-html">
+          Télécharger index.html mis à jour
+        </button>
+        <div class="status" id="status"></div>
       </div>
     </div>
   </section>
 
   <script>
-    const configTag = document.getElementById("page-config");
-    const sitesTag = document.getElementById("sites-data");
-
-    let config = JSON.parse(configTag.textContent);
-    let sites = JSON.parse(sitesTag.textContent);
-
-    const cards = document.getElementById("cards");
-    const statCount = document.getElementById("stat-count");
-    const chipCount = document.getElementById("chip-count");
+    const dataTag = document.getElementById("sites-data");
+    let sites = JSON.parse(dataTag.textContent);
+    const linksContainer = document.getElementById("links");
 
     function escapeHTML(value = "") {
       return String(value)
@@ -1385,8 +561,8 @@
 
     function initials(name = "") {
       const clean = name.replace(/\.(com|fr|io|app|net|org)$/i, "");
-      const words = clean.split(/[\s\-_]+/).filter(Boolean);
-      if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+      const parts = clean.split(/[\s\-_]+/).filter(Boolean);
+      if (parts.length > 1) return (parts[0][0] + parts[1][0]).toUpperCase();
       return clean.slice(0, 2).toUpperCase();
     }
 
@@ -1398,299 +574,175 @@
       }
     }
 
-    function updateAnimationClasses() {
-      document.body.classList.toggle("anim-borders", !!config.animations.animatedBorders);
-      document.body.classList.toggle("anim-logo", !!config.animations.rotatingLogoRing);
-      document.body.classList.toggle("anim-shine", !!config.animations.shineHover);
-      document.body.classList.toggle("anim-hover", !!config.animations.hoverLift);
-    }
-
-    function renderConfig() {
-      document.getElementById("hero-eyebrow").textContent = config.heroEyebrow || "";
-      document.getElementById("hero-title").innerHTML = escapeHTML(config.heroTitle || "").replaceAll("\n", "<br>");
-      document.getElementById("hero-subtitle").textContent = config.heroSubtitle || "";
-      document.getElementById("list-title").textContent = config.listTitle || "";
-      document.getElementById("list-subtitle").textContent = config.listSubtitle || "";
-
-      statCount.textContent = String(sites.length);
-      chipCount.textContent = `${sites.length} projet${sites.length > 1 ? "s" : ""}`;
-
-      updateAnimationClasses();
-      configTag.textContent = "\n" + JSON.stringify(config, null, 2) + "\n";
-    }
-
     function renderSites() {
-      cards.innerHTML = "";
+      linksContainer.innerHTML = "";
 
-      sites.forEach((site, i) => {
-        const rank = i + 1;
+      sites.forEach((site, index) => {
+        const card = document.createElement("a");
+        card.className = "link-card";
+        card.href = site.url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
         const logoUrl = site.logo || autoFavicon(site.url);
         const fallback = initials(site.name);
 
-        const card = document.createElement("div");
-        card.className = "rank-card";
-        card.dataset.rank = rank;
-
         card.innerHTML = `
-          <div class="shine"></div>
-          <div class="rank-badge">${rank}</div>
-
-          <div class="logo-wrap">
-            <div class="logo-ring"></div>
-            <div class="logo-box">
-              ${
-                logoUrl
-                  ? `<img src="${escapeHTML(logoUrl)}" alt="" onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>${escapeHTML(fallback)}</div>';">`
-                  : `<div class="logo-fallback">${escapeHTML(fallback)}</div>`
-              }
-            </div>
+          <div class="rank-number ${index === 0 ? "rank-1" : ""}">${index + 1}</div>
+          <div class="site-logo">
+            ${logoUrl
+              ? `<img src="${escapeHTML(logoUrl)}" alt="" onerror="this.remove();this.parentElement.textContent='${escapeHTML(fallback)}'">`
+              : escapeHTML(fallback)
+            }
           </div>
-
-          <div class="card-content">
-            <div class="title-row">
-              <h3 class="site-title">${escapeHTML(site.name || "")}</h3>
-              ${site.badge ? `<span class="pill">${escapeHTML(site.badge)}</span>` : ""}
+          <div class="content">
+            <div class="site-name">
+              ${escapeHTML(site.name)}
+              <span class="arrow">↗</span>
             </div>
-
-            ${site.description ? `<div class="site-desc">${escapeHTML(site.description)}</div>` : ""}
-
-            <div class="meta-row">
-              ${site.category ? `<span class="tag">${escapeHTML(site.category)}</span>` : ""}
-              <span class="tag blue">+ Fiche</span>
-            </div>
-
-            ${site.subline ? `<div class="subline">${escapeHTML(site.subline)}</div>` : ""}
-            <div class="belowline">
-              ${escapeHTML(site.url || "")}
-            </div>
-          </div>
-
-          <div class="action-col">
-            <div class="site-url">
-              <a href="${escapeHTML(site.url || "#")}" target="_blank" rel="noopener noreferrer">
-                ${escapeHTML(site.name || "")}
-                <span class="site-arrow">↗</span>
-              </a>
-            </div>
-            <a class="visit-btn" href="${escapeHTML(site.url || "#")}" target="_blank" rel="noopener noreferrer">
-              ${escapeHTML(site.cta || "Visiter")}
-            </a>
+            <p class="description">${escapeHTML(site.description)}</p>
           </div>
         `;
 
-        cards.appendChild(card);
+        linksContainer.appendChild(card);
       });
-
-      statCount.textContent = String(sites.length);
-      chipCount.textContent = `${sites.length} projet${sites.length > 1 ? "s" : ""}`;
-      sitesTag.textContent = "\n" + JSON.stringify(sites, null, 2) + "\n";
     }
 
-    renderConfig();
     renderSites();
 
+    // L'éditeur ne s'affiche que si l'URL contient ?edit=1
     const editMode = new URLSearchParams(location.search).get("edit") === "1";
 
     if (editMode) {
       document.body.classList.add("edit-mode");
 
-      const q = (id) => document.getElementById(id);
-
-      const form = q("site-form");
-      const editorSites = q("editor-sites");
-      const status = q("status");
-
-      const nameInput = q("site-name");
-      const urlInput = q("site-url");
-      const descriptionInput = q("site-description");
-      const categoryInput = q("site-category");
-      const badgeInput = q("site-badge");
-      const sublineInput = q("site-subline");
-      const ctaInput = q("site-cta");
-      const logoInput = q("site-logo");
-      const editIndexInput = q("edit-index");
-      const submitBtn = q("submit-btn");
-      const cancelBtn = q("cancel-edit");
-
-      const cfgEyebrow = q("cfg-eyebrow");
-      const cfgTitle = q("cfg-title");
-      const cfgSubtitle = q("cfg-subtitle");
-      const cfgListTitle = q("cfg-list-title");
-      const cfgListSubtitle = q("cfg-list-subtitle");
-
-      const toggleBorders = q("toggle-borders");
-      const toggleLogo = q("toggle-logo");
-      const toggleShine = q("toggle-shine");
-      const toggleHover = q("toggle-hover");
-
-      function fillConfigInputs() {
-        cfgEyebrow.value = config.heroEyebrow || "";
-        cfgTitle.value = config.heroTitle || "";
-        cfgSubtitle.value = config.heroSubtitle || "";
-        cfgListTitle.value = config.listTitle || "";
-        cfgListSubtitle.value = config.listSubtitle || "";
-
-        toggleBorders.checked = !!config.animations.animatedBorders;
-        toggleLogo.checked = !!config.animations.rotatingLogoRing;
-        toggleShine.checked = !!config.animations.shineHover;
-        toggleHover.checked = !!config.animations.hoverLift;
-      }
-
-      function bindConfigLive() {
-        [
-          [cfgEyebrow, "heroEyebrow"],
-          [cfgTitle, "heroTitle"],
-          [cfgSubtitle, "heroSubtitle"],
-          [cfgListTitle, "listTitle"],
-          [cfgListSubtitle, "listSubtitle"],
-        ].forEach(([input, key]) => {
-          input.addEventListener("input", () => {
-            config[key] = input.value;
-            renderConfig();
-          });
-        });
-
-        toggleBorders.addEventListener("change", () => {
-          config.animations.animatedBorders = toggleBorders.checked;
-          renderConfig();
-        });
-
-        toggleLogo.addEventListener("change", () => {
-          config.animations.rotatingLogoRing = toggleLogo.checked;
-          renderConfig();
-        });
-
-        toggleShine.addEventListener("change", () => {
-          config.animations.shineHover = toggleShine.checked;
-          renderConfig();
-        });
-
-        toggleHover.addEventListener("change", () => {
-          config.animations.hoverLift = toggleHover.checked;
-          renderConfig();
-        });
-      }
+      const form = document.getElementById("site-form");
+      const nameInput = document.getElementById("site-name");
+      const urlInput = document.getElementById("site-url");
+      const descInput = document.getElementById("site-description");
+      const logoInput = document.getElementById("site-logo");
+      const indexInput = document.getElementById("edit-index");
+      const submitBtn = document.getElementById("submit-btn");
+      const cancelBtn = document.getElementById("cancel-edit");
+      const editorList = document.getElementById("editor-list");
+      const status = document.getElementById("status");
 
       function resetForm() {
         form.reset();
-        editIndexInput.value = "-1";
-        submitBtn.textContent = "+ Ajouter le site";
+        indexInput.value = "-1";
+        submitBtn.textContent = "+ Ajouter le lien";
         cancelBtn.hidden = true;
       }
 
-      function renderEditorSites() {
-        editorSites.innerHTML = "";
+      function renderEditor() {
+        editorList.innerHTML = "";
 
         sites.forEach((site, i) => {
-          const item = document.createElement("div");
-          item.className = "editor-item";
-          item.innerHTML = `
+          const row = document.createElement("div");
+          row.className = "editor-item";
+
+          row.innerHTML = `
             <div>
-              <strong>${escapeHTML(site.name || "")}</strong>
-              <small>${escapeHTML(site.url || "")}</small>
+              <strong>${escapeHTML(site.name)}</strong>
+              <small>${escapeHTML(site.url)}</small>
             </div>
             <div class="mini-actions">
-              <button class="mini-btn" type="button" data-action="up" data-index="${i}" title="Monter">↑</button>
-              <button class="mini-btn" type="button" data-action="down" data-index="${i}" title="Descendre">↓</button>
-              <button class="mini-btn" type="button" data-action="edit" data-index="${i}" title="Modifier">✎</button>
-              <button class="mini-btn" type="button" data-action="delete" data-index="${i}" title="Supprimer">×</button>
+              <button class="mini" type="button" data-action="up" data-index="${i}" title="Monter">↑</button>
+              <button class="mini" type="button" data-action="down" data-index="${i}" title="Descendre">↓</button>
+              <button class="mini" type="button" data-action="edit" data-index="${i}" title="Modifier">✎</button>
+              <button class="mini" type="button" data-action="delete" data-index="${i}" title="Supprimer">×</button>
             </div>
           `;
-          editorSites.appendChild(item);
+
+          editorList.appendChild(row);
         });
+
+        dataTag.textContent = "\n" + JSON.stringify(sites, null, 2) + "\n";
       }
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
 
         const site = {
           name: nameInput.value.trim(),
           url: urlInput.value.trim(),
-          description: descriptionInput.value.trim(),
-          logo: logoInput.value.trim(),
-          category: categoryInput.value.trim(),
-          badge: badgeInput.value.trim(),
-          subline: sublineInput.value.trim(),
-          cta: ctaInput.value.trim() || "Visiter"
+          description: descInput.value.trim(),
+          logo: logoInput.value.trim()
         };
 
-        const idx = Number(editIndexInput.value);
-        if (idx >= 0) {
-          sites[idx] = site;
+        const index = Number(indexInput.value);
+
+        if (index >= 0) {
+          sites[index] = site;
         } else {
           sites.push(site);
         }
 
         renderSites();
-        renderEditorSites();
+        renderEditor();
         resetForm();
-        status.textContent = "Modifications prises en compte. Pense à télécharger le fichier.";
+        status.textContent = "Modification prise en compte. Pense à télécharger le fichier.";
       });
 
       cancelBtn.addEventListener("click", resetForm);
 
-      editorSites.addEventListener("click", (e) => {
-        const btn = e.target.closest("button[data-action]");
-        if (!btn) return;
+      editorList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
 
-        const action = btn.dataset.action;
-        const idx = Number(btn.dataset.index);
+        const index = Number(button.dataset.index);
+        const action = button.dataset.action;
 
         if (action === "edit") {
-          const site = sites[idx];
-          nameInput.value = site.name || "";
-          urlInput.value = site.url || "";
-          descriptionInput.value = site.description || "";
-          categoryInput.value = site.category || "";
-          badgeInput.value = site.badge || "";
-          sublineInput.value = site.subline || "";
-          ctaInput.value = site.cta || "";
+          const site = sites[index];
+          nameInput.value = site.name;
+          urlInput.value = site.url;
+          descInput.value = site.description;
           logoInput.value = site.logo || "";
-          editIndexInput.value = idx;
-          submitBtn.textContent = "Enregistrer";
+          indexInput.value = index;
+          submitBtn.textContent = "Enregistrer les modifications";
           cancelBtn.hidden = false;
-          form.scrollIntoView({ behavior: "smooth", block: "start" });
+          form.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
 
         if (action === "delete") {
-          if (confirm(`Supprimer ${sites[idx].name} ?`)) {
-            sites.splice(idx, 1);
+          if (confirm(`Supprimer ${sites[index].name} ?`)) {
+            sites.splice(index, 1);
           }
         }
 
-        if (action === "up" && idx > 0) {
-          [sites[idx - 1], sites[idx]] = [sites[idx], sites[idx - 1]];
+        if (action === "up" && index > 0) {
+          [sites[index - 1], sites[index]] = [sites[index], sites[index - 1]];
         }
 
-        if (action === "down" && idx < sites.length - 1) {
-          [sites[idx + 1], sites[idx]] = [sites[idx], sites[idx + 1]];
+        if (action === "down" && index < sites.length - 1) {
+          [sites[index + 1], sites[index]] = [sites[index], sites[index + 1]];
         }
 
         renderSites();
-        renderEditorSites();
+        renderEditor();
       });
 
-      q("download-html").addEventListener("click", () => {
-        configTag.textContent = "\n" + JSON.stringify(config, null, 2) + "\n";
-        sitesTag.textContent = "\n" + JSON.stringify(sites, null, 2) + "\n";
+      document.getElementById("download-html").addEventListener("click", () => {
+        dataTag.textContent = "\n" + JSON.stringify(sites, null, 2) + "\n";
 
         const html = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
         const blob = new Blob([html], { type: "text/html;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
+
         a.href = url;
         a.download = "index.html";
         document.body.appendChild(a);
         a.click();
         a.remove();
+
         setTimeout(() => URL.revokeObjectURL(url), 1000);
-        status.textContent = "index.html téléchargé ✓ — remplace maintenant ton fichier sur GitHub.";
+        status.textContent = "index.html téléchargé ✓ — remplace maintenant celui sur GitHub.";
       });
 
-      fillConfigInputs();
-      bindConfigLive();
-      renderEditorSites();
+      renderEditor();
     }
   </script>
 </body>
