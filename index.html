@@ -107,6 +107,7 @@
     }
 
     .link-card {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 17px;
@@ -123,6 +124,26 @@
       transform: translateY(-3px);
       border-color: #d8d8d4;
       box-shadow: 0 16px 42px rgba(17,19,24,.08);
+    }
+
+    .site-badge {
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      z-index: 2;
+      max-width: 130px;
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--rank-bg);
+      color: var(--rank-text);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .rank-number {
@@ -420,6 +441,12 @@
       box-shadow: 0 16px 42px rgba(0,0,0,.28);
     }
 
+    html[data-theme="dark"] .site-badge {
+      background: #202329;
+      border-color: #30343d;
+      color: #c8ccd4;
+    }
+
     html[data-theme="dark"] .site-logo {
       background: #202329;
       border-color: #30343d;
@@ -494,6 +521,14 @@
         border-radius: 19px;
       }
 
+      .site-badge {
+        top: 10px;
+        right: 11px;
+        max-width: 105px;
+        padding: 5px 8px;
+        font-size: 9px;
+      }
+
       .rank-number {
         flex-basis: 30px;
         width: 30px;
@@ -543,7 +578,7 @@
     <header class="header">
       <div class="brand-logo">N</div>
       <h1>NoHasard.com</h1>
-      <p class="intro">Le hasard n’existe pas</p>
+      <p class="intro">Le hasard n’existe pas.</p>
     </header>
 
     <section class="links" id="links"></section>
@@ -561,31 +596,36 @@
     "name": "EcomStrike.com",
     "url": "https://ecomstrike.com/",
     "description": "Business en ligne, SEO et méthodes concrètes.",
-    "logo": ""
+    "logo": "",
+    "badge": ""
   },
   {
     "name": "Adsifast.com",
     "url": "https://adsifast.com/",
     "description": "Alertes Vinted rapides directement sur Telegram.",
-    "logo": ""
+    "logo": "",
+    "badge": ""
   },
   {
     "name": "Kidomine.com",
     "url": "https://kidomine.com/",
     "description": "Le jeu de duels pour savoir qui est le plus connu.",
-    "logo": ""
+    "logo": "",
+    "badge": ""
   },
   {
     "name": "BusinessFusion.fr",
     "url": "https://businessfusion.fr/",
     "description": "Conseils et ressources pour développer un business en ligne.",
-    "logo": ""
+    "logo": "",
+    "badge": ""
   },
   {
     "name": "CardMonster.fr",
     "url": "https://cardmonster.fr/",
     "description": "Cartes Pokémon, produits scellés et collection.",
-    "logo": ""
+    "logo": "",
+    "badge": ""
   }
 ]
   </script>
@@ -625,6 +665,11 @@
           <div class="field full">
             <label for="site-logo">Logo / favicon (optionnel)</label>
             <input id="site-logo" type="url" placeholder="https://monsite.com/favicon.ico">
+          </div>
+
+          <div class="field full">
+            <label for="site-badge">Mini badge en haut à droite (optionnel)</label>
+            <input id="site-badge" maxlength="24" placeholder="Ex. Nouveau, SaaS, À découvrir...">
           </div>
         </div>
 
@@ -720,6 +765,7 @@
         const fallback = initials(site.name);
 
         card.innerHTML = `
+          ${site.badge ? `<span class="site-badge">${escapeHTML(site.badge)}</span>` : ""}
           <div class="rank-number ${index === 0 ? "rank-1" : ""}">${index + 1}</div>
           <div class="site-logo">
             ${logoUrl
@@ -753,6 +799,7 @@
       const urlInput = document.getElementById("site-url");
       const descInput = document.getElementById("site-description");
       const logoInput = document.getElementById("site-logo");
+      const badgeInput = document.getElementById("site-badge");
       const indexInput = document.getElementById("edit-index");
       const submitBtn = document.getElementById("submit-btn");
       const cancelBtn = document.getElementById("cancel-edit");
@@ -799,7 +846,8 @@
           name: nameInput.value.trim(),
           url: urlInput.value.trim(),
           description: descInput.value.trim(),
-          logo: logoInput.value.trim()
+          logo: logoInput.value.trim(),
+          badge: badgeInput.value.trim()
         };
 
         const index = Number(indexInput.value);
@@ -831,6 +879,7 @@
           urlInput.value = site.url;
           descInput.value = site.description;
           logoInput.value = site.logo || "";
+          badgeInput.value = site.badge || "";
           indexInput.value = index;
           submitBtn.textContent = "Enregistrer les modifications";
           cancelBtn.hidden = false;
