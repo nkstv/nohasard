@@ -187,7 +187,11 @@
       display: block;
     }
 
-    .content { flex: 1; min-width: 0; }
+    .content {
+      flex: 1;
+      min-width: 0;
+      padding-right: 118px;
+    }
 
     .site-name {
       display: flex;
@@ -219,17 +223,20 @@
     }
 
     .chrome-extension-link {
+      position: absolute;
+      top: 43px;
+      right: 15px;
+      z-index: 3;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       width: fit-content;
-      margin-top: 10px;
       padding: 6px 9px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: var(--rank-bg);
       color: var(--text);
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1;
       font-weight: 750;
       cursor: pointer;
@@ -593,13 +600,15 @@
         font-size: 15px;
       }
 
+      .content { padding-right: 92px; }
       .site-name { font-size: 18px; }
       .description { font-size: 13px; }
 
       .chrome-extension-link {
-        margin-top: 8px;
-        padding: 6px 8px;
-        font-size: 10px;
+        top: 38px;
+        right: 11px;
+        padding: 5px 8px;
+        font-size: 9px;
       }
 
       body.edit-mode .editor {
@@ -713,7 +722,7 @@
     "name": "ChromeKeePass.com",
     "url": "https://chromekeepass.com/",
     "description": "Your KeePass vault. Right in Chrome. Over 30,000 users.",
-    "logo": "assets/logos/chromekeepass.svg",
+    "logo": "https://chromekeepass.com/assets/favicon.svg",
     "badge": "Gratuit"
   }
 ]
@@ -860,6 +869,25 @@
 
         card.innerHTML = `
           ${site.badge ? `<span class="site-badge">${escapeHTML(site.badge)}</span>` : ""}
+          ${site.chromeUrl ? `
+            <span
+              class="chrome-extension-link"
+              role="link"
+              tabindex="0"
+              data-chrome-url="${escapeHTML(site.chromeUrl)}"
+              aria-label="Ouvrir l'extension Chrome de ${escapeHTML(site.name)}"
+            >
+              <svg class="chrome-extension-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#EA4335" d="M12 2a10 10 0 0 1 8.66 5H12a5 5 0 0 0-4.33 2.5L4.78 4.5A9.96 9.96 0 0 1 12 2Z"/>
+                <path fill="#FBBC05" d="M20.66 7A10 10 0 0 1 12 22l4.33-7.5A5 5 0 0 0 17 12a5 5 0 0 0-5-5h8.66Z"/>
+                <path fill="#34A853" d="M12 22A10 10 0 0 1 4.78 4.5l4.33 7.5A5 5 0 0 0 12 17c1.85 0 3.47-1 4.33-2.5L12 22Z"/>
+                <circle cx="12" cy="12" r="4.25" fill="#4285F4"/>
+                <circle cx="12" cy="12" r="4.25" fill="none" stroke="#fff" stroke-width="1.15"/>
+              </svg>
+              <span>Extension Chrome</span>
+              <span class="chrome-extension-arrow">↗</span>
+            </span>
+          ` : ""}
           <div class="rank-number ${index === 0 ? "rank-1" : ""}">${index + 1}</div>
           <div class="site-logo">
             ${logoUrl
@@ -873,26 +901,6 @@
               <span class="arrow">↗</span>
             </div>
             <p class="description">${escapeHTML(site.description)}</p>
-
-            ${site.chromeUrl ? `
-              <span
-                class="chrome-extension-link"
-                role="link"
-                tabindex="0"
-                data-chrome-url="${escapeHTML(site.chromeUrl)}"
-                aria-label="Ouvrir l'extension Chrome de ${escapeHTML(site.name)}"
-              >
-                <svg class="chrome-extension-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#EA4335" d="M12 2a10 10 0 0 1 8.66 5H12a5 5 0 0 0-4.33 2.5L4.78 4.5A9.96 9.96 0 0 1 12 2Z"/>
-                  <path fill="#FBBC05" d="M20.66 7A10 10 0 0 1 12 22l4.33-7.5A5 5 0 0 0 17 12a5 5 0 0 0-5-5h8.66Z"/>
-                  <path fill="#34A853" d="M12 22A10 10 0 0 1 4.78 4.5l4.33 7.5A5 5 0 0 0 12 17c1.85 0 3.47-1 4.33-2.5L12 22Z"/>
-                  <circle cx="12" cy="12" r="4.25" fill="#4285F4"/>
-                  <circle cx="12" cy="12" r="4.25" fill="none" stroke="#fff" stroke-width="1.15"/>
-                </svg>
-                <span>Extension Chrome</span>
-                <span class="chrome-extension-arrow">↗</span>
-              </span>
-            ` : ""}
           </div>
         `;
 
