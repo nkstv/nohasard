@@ -218,6 +218,46 @@
       line-height: 1.45;
     }
 
+    .chrome-extension-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      margin-top: 10px;
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--rank-bg);
+      color: var(--text);
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+
+    .chrome-extension-link:hover {
+      transform: translateY(-1px);
+      border-color: #cdd0d6;
+    }
+
+    .chrome-extension-icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      display: block;
+    }
+
+    .chrome-extension-arrow {
+      color: var(--muted);
+      font-size: 11px;
+      transition: transform .16s ease;
+    }
+
+    .chrome-extension-link:hover .chrome-extension-arrow {
+      transform: translate(1px, -1px);
+    }
+
     footer {
       margin-top: 40px;
       text-align: center;
@@ -446,6 +486,16 @@
       color: #c8ccd4;
     }
 
+    html[data-theme="dark"] .chrome-extension-link {
+      background: #202329;
+      border-color: #30343d;
+    }
+
+    html[data-theme="dark"] .chrome-extension-link:hover {
+      border-color: #454a55;
+      background: #25282f;
+    }
+
     html[data-theme="dark"] .site-logo {
       background: #202329;
       border-color: #30343d;
@@ -545,6 +595,12 @@
 
       .site-name { font-size: 18px; }
       .description { font-size: 13px; }
+
+      .chrome-extension-link {
+        margin-top: 8px;
+        padding: 6px 8px;
+        font-size: 10px;
+      }
 
       body.edit-mode .editor {
         width: min(calc(100% - 24px), 760px);
@@ -657,7 +713,7 @@
     "name": "ChromeKeePass.com",
     "url": "https://chromekeepass.com/",
     "description": "Your KeePass vault. Right in Chrome. Over 30,000 users.",
-    "logo": "assets/logos/chromekeepass.svg",
+    "logo": "https://chromekeepass.com/assets/favicon.svg",
     "badge": "Gratuit"
   }
 ]
@@ -703,6 +759,11 @@
           <div class="field full">
             <label for="site-badge">Mini badge en haut à droite (optionnel)</label>
             <input id="site-badge" maxlength="24" placeholder="Ex. Nouveau, SaaS, À découvrir...">
+          </div>
+
+          <div class="field full">
+            <label for="site-chrome-url">Lien extension Chrome (optionnel)</label>
+            <input id="site-chrome-url" type="url" placeholder="https://chromewebstore.google.com/detail/...">
           </div>
         </div>
 
@@ -812,8 +873,45 @@
               <span class="arrow">↗</span>
             </div>
             <p class="description">${escapeHTML(site.description)}</p>
+
+            ${site.chromeUrl ? `
+              <span
+                class="chrome-extension-link"
+                role="link"
+                tabindex="0"
+                data-chrome-url="${escapeHTML(site.chromeUrl)}"
+                aria-label="Ouvrir l'extension Chrome de ${escapeHTML(site.name)}"
+              >
+                <svg class="chrome-extension-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#EA4335" d="M12 2a10 10 0 0 1 8.66 5H12a5 5 0 0 0-4.33 2.5L4.78 4.5A9.96 9.96 0 0 1 12 2Z"/>
+                  <path fill="#FBBC05" d="M20.66 7A10 10 0 0 1 12 22l4.33-7.5A5 5 0 0 0 17 12a5 5 0 0 0-5-5h8.66Z"/>
+                  <path fill="#34A853" d="M12 22A10 10 0 0 1 4.78 4.5l4.33 7.5A5 5 0 0 0 12 17c1.85 0 3.47-1 4.33-2.5L12 22Z"/>
+                  <circle cx="12" cy="12" r="4.25" fill="#4285F4"/>
+                  <circle cx="12" cy="12" r="4.25" fill="none" stroke="#fff" stroke-width="1.15"/>
+                </svg>
+                <span>Extension Chrome</span>
+                <span class="chrome-extension-arrow">↗</span>
+              </span>
+            ` : ""}
           </div>
         `;
+
+        const chromeLink = card.querySelector(".chrome-extension-link");
+
+        if (chromeLink) {
+          const openChromeExtension = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open(chromeLink.dataset.chromeUrl, "_blank", "noopener,noreferrer");
+          };
+
+          chromeLink.addEventListener("click", openChromeExtension);
+          chromeLink.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              openChromeExtension(event);
+            }
+          });
+        }
 
         linksContainer.appendChild(card);
       });
@@ -833,6 +931,7 @@
       const descInput = document.getElementById("site-description");
       const logoInput = document.getElementById("site-logo");
       const badgeInput = document.getElementById("site-badge");
+      const chromeUrlInput = document.getElementById("site-chrome-url");
       const indexInput = document.getElementById("edit-index");
       const submitBtn = document.getElementById("submit-btn");
       const cancelBtn = document.getElementById("cancel-edit");
@@ -880,7 +979,8 @@
           url: urlInput.value.trim(),
           description: descInput.value.trim(),
           logo: logoInput.value.trim(),
-          badge: badgeInput.value.trim()
+          badge: badgeInput.value.trim(),
+          chromeUrl: chromeUrlInput.value.trim()
         };
 
         const index = Number(indexInput.value);
@@ -913,6 +1013,7 @@
           descInput.value = site.description;
           logoInput.value = site.logo || "";
           badgeInput.value = site.badge || "";
+          chromeUrlInput.value = site.chromeUrl || "";
           indexInput.value = index;
           submitBtn.textContent = "Enregistrer les modifications";
           cancelBtn.hidden = false;
@@ -988,4 +1089,4 @@
   </script>
 
 
-</body><p8c301aee-e302-4d6f-9072-cf7d598f6625></p8c301aee-e302-4d6f-9072-cf7d598f6625></html>
+</body></html>
