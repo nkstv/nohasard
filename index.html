@@ -600,15 +600,32 @@
         font-size: 15px;
       }
 
-      .content { padding-right: 92px; }
+      .content { padding-right: 48px; }
       .site-name { font-size: 18px; }
       .description { font-size: 13px; }
 
       .chrome-extension-link {
         top: 38px;
         right: 11px;
-        padding: 5px 8px;
-        font-size: 9px;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 10px;
+      }
+
+      .chrome-extension-link > span:not(.chrome-extension-arrow) {
+        display: none;
+      }
+
+      .chrome-extension-arrow {
+        display: none;
+      }
+
+      .chrome-extension-icon {
+        width: 17px;
+        height: 17px;
+        flex-basis: 17px;
       }
 
       body.edit-mode .editor {
@@ -695,8 +712,7 @@
     "url": "https://emoji-script.com/",
     "description": "Coder avec des emojis. Copie, colle, exécute.",
     "logo": "assets/logos/emoji-script.svg",
-    "badge": "Gratuit",
-    "chromeUrl": "https://chromewebstore.google.com/detail/jikhhemdcghapficdnjicfekjjiojkon?utm_source=item-share-cb"
+    "badge": "Gratuit"
   },
   {
     "name": "Werenoi.com",
@@ -715,16 +731,15 @@
   {
     "name": "Accorde-Guitare.com",
     "url": "https://accorde-guitare.com/",
-    "description": "Accordeur Guitare en ligne.",
+    "description": "Accordeur Guitare acoustique, électrique, basse ou ukulélé.",
     "logo": "assets/logos/accorde-guitare.svg",
-    "badge": "Gratuit",
-    "chromeUrl": "https://chromewebstore.google.com/detail/cghakopomalmopdkjfdddcpbedfobodp?utm_source=item-share-cb"
+    "badge": "Gratuit"
   },
   {
     "name": "ChromeKeePass.com",
     "url": "https://chromekeepass.com/",
     "description": "Your KeePass vault. Right in Chrome. Over 30,000 users.",
-    "logo": "assets/logos/chromekeepass.svg",
+    "logo": "https://chromekeepass.com/assets/favicon.svg",
     "badge": "Gratuit"
   }
 ]
@@ -1099,4 +1114,4 @@
   </script>
 
 
-</body><q8ef10a86-9d76-485f-978e-d09b4e5817ea></q8ef10a86-9d76-485f-978e-d09b4e5817ea></html>
+</body></html>
